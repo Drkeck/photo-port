@@ -8,6 +8,8 @@ const catagoties = [
 ]
 const mockCurrentCatagory = jest.fn();
 const mockSetCurrentCategory = jest.fn();
+const mockContactSelected = jest.fn();
+const mockSetContactSelected = jest.fn();
 
 afterEach(cleanup)
 
@@ -17,6 +19,8 @@ describe('new nav component', () => {
         catagoties={catagoties}
         setCurrentCategory={mockSetCurrentCategory}
         currentCatagory={mockCurrentCatagory}
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected}
         />)
     })
 
@@ -24,7 +28,9 @@ describe('new nav component', () => {
         const {asFragment} = render(<Nav 
             catagoties={catagoties}
             setCurrentCategory={mockSetCurrentCategory}
-            currentCatagory={mockCurrentCatagory} />)
+            currentCatagory={mockCurrentCatagory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected} />)
         expect(asFragment).toMatchSnapshot();
     })
 })
@@ -34,7 +40,9 @@ describe('the emoji is visable', () => {
         const { getByLabelText } = render(<Nav 
             catagoties={catagoties}
             setCurrentCategory={mockSetCurrentCategory}
-            currentCatagory={mockCurrentCatagory} />)
+            currentCatagory={mockCurrentCatagory}
+            contactSelected={mockContactSelected}
+            setContactSelected={mockSetContactSelected} />)
         expect(getByLabelText('camera')).toHaveTextContent('📸')
     })
 })
@@ -44,7 +52,9 @@ describe('links are visible', () => {
       const { getByTestId } = render(<Nav 
         catagoties={catagoties}
         setCurrentCategory={mockSetCurrentCategory}
-        currentCatagory={mockCurrentCatagory} />);
+        currentCatagory={mockCurrentCatagory}
+        contactSelected={mockContactSelected}
+        setContactSelected={mockSetContactSelected} />);
       expect(getByTestId("link")).toHaveTextContent('Oh Snap!');
       expect(getByTestId("about")).toHaveTextContent('About me');
     });
