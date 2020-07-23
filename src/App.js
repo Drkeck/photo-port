@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import About from './components/about'
 import Nav from './components/nav'
 import Gallery from './components/gallery'
+import ContactForm from './components/Contact'
 import './App.css';
+
 
 function App() {
   const [catagoties] = useState([
@@ -28,6 +30,7 @@ function App() {
       currentCatagory={currentCatagory}
       ></Nav>
       <main>
+        <ContactForm></ContactForm>
         <Gallery currentCategory={currentCatagory}></Gallery>
         <About></About>
       </main>
