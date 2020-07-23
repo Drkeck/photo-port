@@ -1,0 +1,51 @@
+import React from 'react';
+import { render, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import Nav from '..';
+
+const catagoties = [
+    { name: 'portraits', description: 'Portraits of people in my life' }
+]
+const mockCurrentCatagory = jest.fn();
+const mockSetCurrentCategory = jest.fn();
+
+afterEach(cleanup)
+
+describe('new nav component', () => {
+    it('renders', () => {
+        render(<Nav 
+        catagoties={catagoties}
+        setCurrentCategory={mockSetCurrentCategory}
+        currentCatagory={mockCurrentCatagory}
+        />)
+    })
+
+    it('matches Snapshot', () => {
+        const {asFragment} = render(<Nav 
+            catagoties={catagoties}
+            setCurrentCategory={mockSetCurrentCategory}
+            currentCatagory={mockCurrentCatagory} />)
+        expect(asFragment).toMatchSnapshot();
+    })
+})
+
+describe('the emoji is visable', () => {
+    it('inserts the emoji into the h2 element', () => {
+        const { getByLabelText } = render(<Nav 
+            catagoties={catagoties}
+            setCurrentCategory={mockSetCurrentCategory}
+            currentCatagory={mockCurrentCatagory} />)
+        expect(getByLabelText('camera')).toHaveTextContent('📸')
+    })
+})
+
+describe('links are visible', () => {
+    it('inserts text into the links', () => {
+      const { getByTestId } = render(<Nav 
+        catagoties={catagoties}
+        setCurrentCategory={mockSetCurrentCategory}
+        currentCatagory={mockCurrentCatagory} />);
+      expect(getByTestId("link")).toHaveTextContent('Oh Snap!');
+      expect(getByTestId("about")).toHaveTextContent('About me');
+    });
+  })
