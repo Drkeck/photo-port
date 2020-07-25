@@ -11,7 +11,7 @@ function Modal({ onClose, currentPhoto }) {
                 <img src={require(`../../assets/large/${category}/${index}.jpg`)} alt="Current catagory" />
                 <p>{description}</p>
                 <button type="button" onClick={onClose}>
-                    close this modal
+                    Close this Modal
                 </button>
             </div>
         </div>
